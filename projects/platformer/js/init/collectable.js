@@ -11,7 +11,8 @@
     grace: { assetKey: "grace", points: 40 },
     kennedi: { assetKey: "kennedi", points: 50 },
     ruby: {assetKey: "ruby", points: 55},
-    treasure: {assetKey: "treasure" , points: 100}
+    treasure: {assetKey: "treasure" , points: 100},
+    Medal: {assetKey: "Medal" , points: 60}
   };
 
   window.opspark.collectable.type = type;
@@ -42,7 +43,8 @@
 
     // example:
     createCollectable(type.ruby, 30, 120, 9, 0.95);
-    createCollectable(type.treasure, 100, 200)
+    createCollectable(type.treasure, 560, 410);
+    createCollectable(type.Medal, 310, 310);
 
 
     // ALL YOUR CODE GOES ABOVE HERE ///////////////////////////////////////
