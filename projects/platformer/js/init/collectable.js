@@ -10,7 +10,7 @@
     steve: { assetKey: "steve", points: 30 },
     grace: { assetKey: "grace", points: 40 },
     kennedi: { assetKey: "kennedi", points: 50 },
-    ruby: {assetKey: "ruby", points: 55},
+    ruby: {assetKey: "ruby", points: 500},
     treasure: {assetKey: "treasure" , points: 100},
     Medal: {assetKey: "Medal" , points: 60}
   };
