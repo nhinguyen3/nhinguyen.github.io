@@ -47,6 +47,8 @@
 			var board = jQuery('.board');	// reference to the HTML .board element
 			var boardWidth = board.width();	// the maximum X-Coordinate of the screen
 			var boardHeight = jQuery(window).height();
+			
+			
 			// Every 50 milliseconds, call the update Function (see below)
 			setInterval(update, 50);
 			
@@ -72,9 +74,9 @@
 			var positionX = 0;
 			var points = 0;
 			var speed = 10;
-			var positionY;
-			var speedY;
-			
+			var positionY = 0;
+			var speedY = 10;
+			var colorStr = "rgb(50, 25, 250)";
 
 			
 			/* 
@@ -84,6 +86,7 @@
 			*/
 			function update() {
 				positionX = positionX + speed; 
+				positionY = positionY + speedY;
 				moveBoxTo(positionX, positionY);
 				if (positionX > boardWidth){
 					speed = -speed;
@@ -91,9 +94,21 @@
 				if (positionX  < 0){
 					speed = -speed;
 				}
-
+				if (positionY > boardHeight){
+					speedY = -speedY;
+				} 
+				if (positionY  < 0){
+					speedY = -speedY;
+				}
 			};
-
+				function getRandomColor(){
+                var colorR = Math.random() * 255;
+                var colorG = Math.random() * 255;
+                var colorB = Math.random() * 255;
+                colorStr = "rgb(" + colorR + "," + colorG + "," + colorB + ")";
+                return(colorStr);
+                
+            }
 			/* 
 			This Function will be called each time the box is clicked. Each time it is called,
 			it should increase the points total, increase the speed, and move the box to
@@ -109,8 +124,11 @@
 				else if (speed < 0){
 					speed = speed - 3;
 				}
-				
 
+
+				
+                getRandomColor();
+                box.css('background-color', colorStr);
 			};
 		})();
 	</script>
