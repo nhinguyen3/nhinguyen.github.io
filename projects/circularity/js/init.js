@@ -52,18 +52,18 @@ var init = function (window) {
         function update() {
             // TODO 4 : Update the circle's position //
             physikz.updatePosition([0]); // this function accepts a circle as an arguments and redraws taht circle in a new location. The circles are stored in the circles Array adn bracket notation pulls out individual circles to be moved using the index. 
-            physikz.updatePosition([1]); // does the same thing but with an index of 1
-            physikz.updatePosition([2]); // does the same thing but with an index of 2
-            physikz.updatePosition([3]); // does the same thing but with an index of 3
-            physikz.updatePosition([4]); // does the same thing but with an index of 4
+            physikz.updatePosition([1]); // does the same thing but with an index of 1.
+            physikz.updatePosition([2]); // does the same thing but with an index of 2.
+            physikz.updatePosition([3]); // does the same thing but with an index of 3.
+            physikz.updatePosition([4]); // does the same thing but with an index of 4.
 
             
             // TODO 5 / 10 : Call game.checkCirclePosition() on your circles.
-            game.checkCirclePosition([0]);
-            game.checkCirclePosition([1]);
-            game.checkCirclePosition([2]);
-            game.checkCirclePosition([3]);
-            game.checkCirclePosition([4]);
+            game.checkCirclePosition([0]); // this is an incomplete function that is being called which keeps circles that stray off the screen on the screen. This is applied to individual circles. This one has an index of 1. 
+            game.checkCirclePosition([1]); // does the same thing but with an index of 1. 
+            game.checkCirclePosition([2]); // does the same thing but with an index of 2.
+            game.checkCirclePosition([3]); // does the same thing but with an index of 3.
+            game.checkCirclePosition([4]); // does the same thing but with an index of 4.
 
             // TODO 9 : Iterate over the array
            
