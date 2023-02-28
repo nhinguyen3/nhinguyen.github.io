@@ -27,7 +27,7 @@ var init = function (window) {
         function drawCircle (){
             // Code to draw a circle
             circle = draw.randomCircleInArea(canvas, true, true, '#999', 2); // draw is taken from an existing library and this will draw a circle of random size, location, and color withing the screen. It stores the output of the funcion in circle temporarily.  
-            physikz.addRandomVelocity(circle, canvas); // the physikz library provides motion to canvas drawings and adds a random velocitya dn direction to the circle. 
+            physikz.addRandomVelocity(circle, canvas, 10, 10); // the physikz library provides motion to canvas drawings and adds a random velocitya dn direction to the circle. 
             view.addChild(circle); // this adds the circle as a child of view to get the circle to appear.
             circles.push(circle);  // allows each new circle to be saved by pushing it to the end of an array. 
         }
@@ -51,10 +51,19 @@ var init = function (window) {
         */
         function update() {
             // TODO 4 : Update the circle's position //
+            physikz.updatePosition([0]); // this function accepts a circle as an arguments and redraws taht circle in a new location. The circles are stored in the circles Array adn bracket notation pulls out individual circles to be moved using the index. 
+            physikz.updatePosition([1]); // does the same thing but with an index of 1
+            physikz.updatePosition([2]); // does the same thing but with an index of 2
+            physikz.updatePosition([3]); // does the same thing but with an index of 3
+            physikz.updatePosition([4]); // does the same thing but with an index of 4
 
             
             // TODO 5 / 10 : Call game.checkCirclePosition() on your circles.
-           
+            game.checkCirclePosition([0]);
+            game.checkCirclePosition([1]);
+            game.checkCirclePosition([2]);
+            game.checkCirclePosition([3]);
+            game.checkCirclePosition([4]);
 
             // TODO 9 : Iterate over the array
            
