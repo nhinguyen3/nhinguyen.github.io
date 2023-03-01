@@ -33,12 +33,16 @@ var init = function (window) {
         }
 
         // TODO 3 / 7 : Call the drawCircle() function 
-        drawCircle();
-        drawCircle();
-        drawCircle();
-        drawCircle();
-        drawCircle();
-
+        // drawCircle(); // This draws and creates a circle according to the function created above in TODO 2
+        // drawCircle(); // the same occurs but another circle is drawn.
+        // drawCircle(); // the same occurs but another circle is drawn.
+        // drawCircle(); // the same occurs but another circle is drawn.
+        // drawCircle(); // the same occurs but another circle is drawn. The violates the DRY rule but still works in allowing us to create multiple circles that will appear on the screen.
+        
+        for (var drawCircles = 0; drawCircles < 100; drawCircles++) {
+            // do something
+            drawCircle();
+        }
 
         ////////////////////////////////////////////////////////////
         ///////////////// PROGRAM LOGIC ////////////////////////////
@@ -51,20 +55,28 @@ var init = function (window) {
         */
         function update() {
             // TODO 4 : Update the circle's position //
-            physikz.updatePosition([0]); // this function accepts a circle as an arguments and redraws taht circle in a new location. The circles are stored in the circles Array adn bracket notation pulls out individual circles to be moved using the index. 
-            physikz.updatePosition([1]); // does the same thing but with an index of 1.
-            physikz.updatePosition([2]); // does the same thing but with an index of 2.
-            physikz.updatePosition([3]); // does the same thing but with an index of 3.
-            physikz.updatePosition([4]); // does the same thing but with an index of 4.
+            //physikz.updatePosition(circles[0]); // this function accepts a circle as an arguments and redraws taht circle in a new location. The circles are stored in the circles Array adn bracket notation pulls out individual circles to be moved using the index. 
+            //physikz.updatePosition(circles[1]); // does the same thing but with an index of 1.
+            //physikz.updatePosition(circles[2]); // does the same thing but with an index of 2.
+            //physikz.updatePosition(circles[3]); // does the same thing but with an index of 3.
+            //physikz.updatePosition(circles[4]); // does the same thing but with an index of 4.
 
             
             // TODO 5 / 10 : Call game.checkCirclePosition() on your circles.
-            game.checkCirclePosition([0]); // this is an incomplete function that is being called which keeps circles that stray off the screen on the screen. This is applied to individual circles. This one has an index of 1. 
-            game.checkCirclePosition([1]); // does the same thing but with an index of 1. 
-            game.checkCirclePosition([2]); // does the same thing but with an index of 2.
-            game.checkCirclePosition([3]); // does the same thing but with an index of 3.
-            game.checkCirclePosition([4]); // does the same thing but with an index of 4.
+            //game.checkCirclePosition(circles[0]); // this is an incomplete function that is being called which keeps circles that stray off the screen on the screen. This is applied to individual circles. This one has an index of 1. 
+            //game.checkCirclePosition(circles[1]); // does the same thing but with an index of 1. 
+            //game.checkCirclePosition(circles[2]); // does the same thing but with an index of 2.
+            //game.checkCirclePosition(circles[3]); // does the same thing but with an index of 3.
+            //game.checkCirclePosition(circles[4]); // does the same thing but with an index of 4.
 
+            for (var i = 0; i < circles.length; i++) {
+                var eachValue = circles[i];
+
+                // code to repeat using eachValue
+                physikz.updatePosition(circles[i]);
+                game.checkCirclePosition(circles[i]);
+              
+             }
             // TODO 9 : Iterate over the array
            
             
@@ -83,7 +95,18 @@ var init = function (window) {
             }
             
             // TODO 6 : YOUR CODE STARTS HERE //////////////////////
-            
+            // if the circle has gone past the LEFT side of the screen then place it on the RIGHT
+            if ( circle.x < 0){
+                circle.x = canvas.width;
+            }
+            // if the circle has gone past the TOP of the screen then place it on BOTTOM
+            if (circle.y < 0){
+                circle.y = canvas.height;
+            }
+            // if the circle has gone past the BOTTOM of the screen then place it on the TOP
+            if (circle.y > canvas.height){
+                circle.y = 0;
+            }
 
 
             // YOUR TODO 6 CODE ENDS HERE //////////////////////////
