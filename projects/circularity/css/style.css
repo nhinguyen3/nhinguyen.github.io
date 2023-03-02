@@ -1,0 +1,8 @@
+body {
+    background: url("https://previews.123rf.com/images/aleksrybalko/aleksrybalko1910/aleksrybalko191000130/131490455-macro-photo-of-a-bee-hive-on-a-honeycomb-with-copyspace-bees-produce-fresh-healthy-honey-.jpg") no-repeat center center fixed;
+    background-color: #cccccc;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}

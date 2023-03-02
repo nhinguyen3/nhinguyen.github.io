@@ -40,8 +40,9 @@ var init = function (window) {
         // drawCircle(); // the same occurs but another circle is drawn. The violates the DRY rule but still works in allowing us to create multiple circles that will appear on the screen.
         
         for (var drawCircles = 0; drawCircles < 100; drawCircles++) {
+            // this loop replaces the repetitive code that was used earlier. It calls and creates multiple circles at once. This for loop runs 100 times. 
             // do something
-            drawCircle();
+            drawCircle(); // this is the function that is being called. 
         }
 
         ////////////////////////////////////////////////////////////
@@ -55,7 +56,7 @@ var init = function (window) {
         */
         function update() {
             // TODO 4 : Update the circle's position //
-            //physikz.updatePosition(circles[0]); // this function accepts a circle as an arguments and redraws taht circle in a new location. The circles are stored in the circles Array adn bracket notation pulls out individual circles to be moved using the index. 
+            //physikz.updatePosition(circles[0]); // this function accepts a circle as an arguments and redraws taht circle in a new location. The circles are stored in the circles Array and bracket notation pulls out individual circles to be moved using the index. 
             //physikz.updatePosition(circles[1]); // does the same thing but with an index of 1.
             //physikz.updatePosition(circles[2]); // does the same thing but with an index of 2.
             //physikz.updatePosition(circles[3]); // does the same thing but with an index of 3.
@@ -69,12 +70,14 @@ var init = function (window) {
             //game.checkCirclePosition(circles[3]); // does the same thing but with an index of 3.
             //game.checkCirclePosition(circles[4]); // does the same thing but with an index of 4.
 
-            for (var i = 0; i < circles.length; i++) {
-                var eachValue = circles[i];
+            // These were function calls were deleted because by using the loop we are able to call on all the circles without repeating ourselves. It is more efficient then using the hard coded numbers. 
+
+            for (var i = 0; i < circles.length; i++) { // this allows us to move all 100 circles and keep them within the screen through iteration which acesses every element in an array to perform some action. 
+                var eachValue = circles[i]; // (explanation continued) the variable contains a bracket notation for each circle in the array. All of this will loop until every circle has been called.
 
                 // code to repeat using eachValue
-                physikz.updatePosition(circles[i]);
-                game.checkCirclePosition(circles[i]);
+                physikz.updatePosition(circles[i]); // the function redraws a circle in a new location and the bracket notation calls on a circle. By using i we can call of each individual circle without using hard coded numbers and repetition. 
+                game.checkCirclePosition(circles[i]); // this function keeps the circles from straying off of the screen and the i applys this to all the circles without using repetition adn hard coding it. 
               
              }
             // TODO 9 : Iterate over the array
@@ -88,7 +91,7 @@ var init = function (window) {
         it to the opposite side of the screen.
         */
         game.checkCirclePosition = function(circle) {
-
+            // the canvas.width is the maximum x-coordinate adn canvas.height is the maximum y-coordinate. 0 is the minimum x and y-coordinate. These will allow us to control were the circles are exiting and coming back through the use of if statements.
             // if the circle has gone past the RIGHT side of the screen then place it on the LEFT
             if ( circle.x > canvas.width ) {
                 circle.x = 0;
