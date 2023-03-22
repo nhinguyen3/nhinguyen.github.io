@@ -91,13 +91,16 @@ var background = function (window) {
             }
             
             // TODO 5: Part 2 - Parallax
-            for (var i = 0; i < myArray.length; i++) {
-                var eachElement = myArray[i];
-                building.x = building.x -1;
+            //moves the buildings and resets their x value to the right side of the canvas if they go off the left
+            for (var i = 0; i < buildings.length; i++) {
+                var building = buildings[i]; // stores an index of the array in the variable building
+                building.x = building.x - 0.5; // subtracts from the x value of the building to make it move to the left
 
-                if(building.x < -200){
-                    building.x = canvasWidth;
+                if(building.x < -100){ // checks to see if the building's x value has gone off the left side of the canvas
+                    building.x = canvasWidth; // resets the x value to canvasWidth which is the right side of the canvas
                 }
+                
+                
                 // code to do something with each element
               }
 
