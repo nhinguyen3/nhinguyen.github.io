@@ -17,11 +17,13 @@ var level01 = function (window) {
             "number": 1, 
             "speed": -3,
             "gameItems": [
-                { "type": "sawblade", "x": 400, "y": groundY - 110 },
+                { "type": "sawblade", "x": 400, "y": groundY - 110},
                 { "type": "sawblade", "x": 600, "y": groundY - 10},
                 { "type": "sawblade", "x": 900, "y": groundY - 110},
+
                 { "type": "enemy", "x": 400, "y": groundY - 50 },
                 { "type": "enemy", "x": 800, "y": groundY - 50},
+
                 { "type": "reward", "x": 950, "y": groundY - 120 },
             ]
         };
@@ -46,12 +48,6 @@ var level01 = function (window) {
     
         }
 
-        createSawBlade(400, groundY - 110);
-        createSawBlade(600, groundY - 10);
-        createSawBlade(800, groundY - 100);
-
-        
-
        
 
         function createEnemy(x, y ){
@@ -75,8 +71,6 @@ var level01 = function (window) {
             }
         }
 
-        createEnemy(400, groundY -50);
-        createEnemy(800, groundY -50);
 
         function createReward(x, y ){
             var reward = game.createGameItem("reward", 25);
@@ -97,7 +91,6 @@ var level01 = function (window) {
 
         }
 
-        createReward(950, groundY - 120);
 
         function createSpike(x,y){
             var hitZoneSize = 25; // assigns a value of 25 as the size of the hitzone
@@ -112,7 +105,21 @@ var level01 = function (window) {
             obstacleImage.y = -25; // assigns a value to the y position of obstacleImage
     
         }
-        createSpike(300, groundY - 10);
+
+
+       for(var i = 0; i < levelData.gameItems.length; i++){
+            var gameItem = levelData.gameItems[i];
+
+            if(gameItem.type === "sawblade"){
+                createSawBlade(gameItem.x, gameItem.y);
+            }
+            if(gameItem.type === "enemy"){
+                createEnemy(gameItem.x, gameItem.y);
+            }
+            if(gameItem.type === "reward"){
+                createReward(gameItem.x, gameItem.y);
+            }
+       }
 
         // DO NOT EDIT CODE BELOW HERE
     }
