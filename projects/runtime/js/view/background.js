@@ -47,26 +47,34 @@ var background = function (window) {
             //moon.scaleY = 0.50; // scales the moon's y value
             //background.addChild(moon); // add the moon as a child of background
             
-            var sun = draw.bitmap("img/sun.png"); // draws the sun using .bitmap and stores it in the moon variable
+            var sun = draw.bitmap("img/sun.png"); // draws the sun using .bitmap and stores it in the sun variable
             sun.x = canvasWidth - 280; // adds an x value to the sun of 300 pixels
             sun.y = groundY - 430; // adds an y value to the sun of 200 pixels
             sun.scaleX = 0.60; // scales the sun's x value
             sun.scaleY = 0.60; // scales the sun's y value
             background.addChild(sun); // add the sun as a child of background
 
-            var clouds = draw.bitmap("img/clouds.png"); // draws the sun using .bitmap and stores it in the moon variable
-            clouds.x = canvasWidth - 900; // adds an x value to the sun of 300 pixels
-            clouds.y = groundY - 400; // adds an y value to the sun of 200 pixels
-            clouds.scaleX = 0.80; // scales the sun's x value
-            clouds.scaleY = 0.75; // scales the sun's y value
+            var clouds = draw.bitmap("img/clouds.png"); // draws the clouds using .bitmap and stores it in the clouds variable
+            clouds.x = canvasWidth - 950; // adds an x value to the clouds of 300 pixels
+            clouds.y = groundY - 299; // adds an y value to the clouds of 200 pixels
+            clouds.scaleX = 0.90; // scales the clouds's x value
+            clouds.scaleY = 0.85; // scales the sun's y value
             background.addChild(clouds); // add the sun as a child of background
 
-            var clouds = draw.bitmap("img/clouds.png"); // draws the sun using .bitmap and stores it in the moon variable
-            clouds.x = canvasWidth - 400; // adds an x value to the sun of 300 pixels
-            clouds.y = groundY - 370; // adds an y value to the sun of 200 pixels
-            clouds.scaleX = 0.80; // scales the sun's x value
-            clouds.scaleY = 0.75; // scales the sun's y value
-            background.addChild(clouds); // add the sun as a child of background
+            var clouds = draw.bitmap("img/clouds.png"); // draws the clouds using .bitmap and stores it in the clouds variable
+            clouds.x = canvasWidth - 400; // adds an x value to the clouds of 300 pixels
+            clouds.y = groundY - 370; // adds an y value to the clouds of 200 pixels
+            clouds.scaleX = 0.90; // scales the clouds's x value
+            clouds.scaleY = 0.85; // scales the clouds's y value
+            background.addChild(clouds); // add the clouds as a child of background
+
+            var clouds = draw.bitmap("img/clouds.png"); // draws the clouds using .bitmap and stores it in the clouds variable
+            clouds.x = canvasWidth - 1700; // adds an x value to the clouds of 300 pixels
+            clouds.y = groundY - 400; // adds an y value to the clouds of 200 pixels
+            clouds.scaleX = 0.90; // scales the clouds's x value
+            clouds.scaleY = 0.85; // scales the clouds's y value
+            background.addChild(clouds); // add the clouds as a child of background
+
 
             // loop that draws 100 stars
            // for(var i = 0; i < 100; i++){
@@ -77,14 +85,24 @@ var background = function (window) {
             //}
             
             // TODO 5: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
-            for (var i = 0; i < 5; ++i) {
-                var buildingHeights = [150, 120, 300, 225, 100];
-                var buildingColors = ['blue', 'red', 'orange', 'green', 'pink']
-                var building = draw.rect(75, buildingHeights[i], buildingColors[i], "Black", 1);
-                building.x = 200 * i;
-                building.y = groundY - buildingHeights[i];
-                background.addChild(building);
-                buildings.push(building);
+           // for (var i = 0; i < 5; ++i) {
+               // var buildingHeights = [150, 120, 300, 225, 100];
+                //var buildingColors = ['blue', 'red', 'orange', 'green', 'pink']
+                //var building = draw.rect(75, buildingHeights[i], buildingColors[i], "Black", 1);
+               // building.x = 200 * i;
+               // building.y = groundY - buildingHeights[i];
+               // background.addChild(building);
+               // buildings.push(building);
+              //}
+
+              for(var i = 0; i < 1; ++i){
+                    var farm = draw.bitmap("img/farm.png");
+                farm.x = canvasWidth - 400;
+                farm.y = groundY - 210;
+                farm.scaleX = 1.30;
+                farm.scaleY = 0.98;
+                background.addChild(farm);
+                buildings.push(farm);
               }
             
             // TODO 4: Part 1 - Add a tree
@@ -117,7 +135,7 @@ var background = function (window) {
                 var building = buildings[i]; // stores an index of the array in the variable building
                 building.x = building.x - 0.5; // subtracts from the x value of the building to make it move to the left
 
-                if(building.x < -100){ // checks to see if the building's x value has gone off the left side of the canvas
+                if(building.x < -300){ // checks to see if the building's x value has gone off the left side of the canvas
                     building.x = canvasWidth; // resets the x value to canvasWidth which is the right side of the canvas
                 }
                 
