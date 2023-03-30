@@ -17,16 +17,16 @@ var level01 = function (window) {
             "number": 1, 
             "speed": -3,
             "gameItems": [
-                { "type": "sawBlade", "x": 400, "y": groundY - 110},
-                { "type": "sawBlade", "x": 600, "y": groundY - 10},
-                { "type": "sawBlade", "x": 900, "y": groundY - 110},
+                { "type": "ax", "x": 400, "y": groundY - 110},
+                { "type": "ax", "x": 600, "y": groundY - 10},
+                { "type": "ax", "x": 900, "y": groundY - 110},
 
                 { "type": "enemy", "x": 400, "y": groundY - 50 },
                 { "type": "enemy", "x": 800, "y": groundY - 50},
 
                 { "type": "reward", "x": 950, "y": groundY - 120 },
 
-                { "type": "spike", "x": 950, "y": groundY - 120 },
+                { "type": "spike", "x": 3000, "y": groundY - 10 },
             ]
         };
         window.levelData = levelData;
@@ -36,15 +36,15 @@ var level01 = function (window) {
         // TODO 6 and on go here
         // BEGIN EDITING YOUR CODE HERE
         
-       function createSawBlade(x,y){
+       function createAx(x,y){
             var hitZoneSize = 25; // assigns a value of 25 as the size of the hitzone
-            var damageFromObstacle = 10; // assigns a value as the damage from the obstacle
-            var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle); // creates the obstacle and stores it in the variable sawBladeHitZone
-            sawBladeHitZone.x = x; // stores a value as the x position for the hit zone
-            sawBladeHitZone.y = y; // stores a value as the y position for the hit zone
-            game.addGameItem(sawBladeHitZone); // adds the hit zone as a game item
+            var damageFromObstacle = 15; // assigns a value as the damage from the obstacle
+            var axHitZone = game.createObstacle(hitZoneSize, damageFromObstacle); // creates the obstacle and stores it in the variable sawBladeHitZone
+            axHitZone.x = x; // stores a value as the x position for the hit zone
+            axHitZone.y = y; // stores a value as the y position for the hit zone
+            game.addGameItem(axHitZone); // adds the hit zone as a game item
             var obstacleImage = draw.bitmap("img/ax.png"); // draws the image and stores it in the variable in the variable obstacleImage
-            sawBladeHitZone.addChild(obstacleImage); // adds obstacleImage as a child of sawBladeHitZone
+            axHitZone.addChild(obstacleImage); // adds obstacleImage as a child of sawBladeHitZone
             obstacleImage.x = -25; // assigns a value to the x position of obstacleImage
             obstacleImage.y = -45; // assigns a value to the y position of obstacleImage
     
@@ -55,7 +55,8 @@ var level01 = function (window) {
 
         function createEnemy(x, y ){
             var enemy = game.createGameItem("enemy", 25);
-            var gameItem = draw.rect(50, 50, "red");
+            //var gameItem = draw.rect(50, 50, "red");
+            var gameItem = draw.bitmap("img/bee.png");
             gameItem.x = -25;
             gameItem.y = -25;
             enemy.addChild(gameItem);
@@ -65,11 +66,11 @@ var level01 = function (window) {
             enemy.velocityX = -2;
 
             enemy.onPlayerCollision = function (){
-                game.changeIntegrity(-10);
+                game.changeIntegrity(-5);
             }
 
             enemy.onProjectileCollision = function (){
-                game.increaseScore(100);
+                game.increaseScore(10);
                 enemy.flyTo(600, 0);
             }
         }
@@ -77,9 +78,12 @@ var level01 = function (window) {
 
         function createReward(x, y ){
              var reward = game.createGameItem("reward", 25);
-            var gameItem = draw.rect(50, 50, "blue");
+            //var gameItem = draw.rect(50, 50, "blue");
+            var gameItem = draw.bitmap("img/coin.png");
+            gameItem.scaleX = 0.20; // scales the sun's x value
+            gameItem.scaleY = 0.20; // scales the sun's y value
             gameItem.x = -25;
-            gameItem.y = -25;
+            gameItem.y = -15;
             reward.addChild(gameItem);
             reward.x = x;
             reward.y = y;
@@ -88,7 +92,7 @@ var level01 = function (window) {
 
             reward.onPlayerCollision = function (){
                 game.changeIntegrity(10);
-                game.increaseScore(100);
+                game.increaseScore(15);
                 reward.shrink();
             }
 
@@ -113,8 +117,8 @@ var level01 = function (window) {
        for(var i = 0; i < levelData.gameItems.length; i++){
             var gameItem = levelData.gameItems[i];
 
-            if(gameItem.type === "sawBlade"){
-                createSawBlade(gameItem.x, gameItem.y);
+            if(gameItem.type === "ax"){
+                createAx(gameItem.x, gameItem.y);
             }
             if(gameItem.type === "enemy"){
                 createEnemy(gameItem.x, gameItem.y);
@@ -123,7 +127,7 @@ var level01 = function (window) {
                 createReward(gameItem.x, gameItem.y);
             }
             if(gameItem.type === "spike"){
-                createReward(gameItem.x, gameItem.y);
+                createSpike(gameItem.x, gameItem.y);
             }
        }
 
