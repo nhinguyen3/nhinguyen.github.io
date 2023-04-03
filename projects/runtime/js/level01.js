@@ -21,12 +21,17 @@ var level01 = function (window) {
                 { "type": "ax", "x": 600, "y": groundY - 10},
                 { "type": "ax", "x": 900, "y": groundY - 110},
 
-                { "type": "enemy", "x": 400, "y": groundY - 50 },
-                { "type": "enemy", "x": 800, "y": groundY - 50},
+                { "type": "bee", "x": 400, "y": groundY - 50 },
+                { "type": "bee", "x": 800, "y": groundY - 50},
+
+                { "type": "bird", "x": 1700, "y": groundY - 130},
+                { "type": "bird", "x": 1850, "y": groundY - 70},
 
                 { "type": "reward", "x": 950, "y": groundY - 120 },
 
-                { "type": "spike", "x": 3000, "y": groundY - 10 },
+                { "type": "cactus", "x": 2000, "y": groundY - 10 },   
+                { "type": "cactus", "x": 2200, "y": groundY - 10 },
+                { "type": "cactus", "x": 2400, "y": groundY - 10 },
             ]
         };
         window.levelData = levelData;
@@ -53,8 +58,8 @@ var level01 = function (window) {
 
        
 
-        function createEnemy(x, y ){
-            var enemy = game.createGameItem("enemy", 25);
+        function createBee(x, y ){
+            var enemy = game.createGameItem("bee", 25);
             //var gameItem = draw.rect(50, 50, "red");
             var gameItem = draw.bitmap("img/bee.png");
             gameItem.x = -25;
@@ -71,6 +76,28 @@ var level01 = function (window) {
 
             enemy.onProjectileCollision = function (){
                 game.increaseScore(10);
+                enemy.flyTo(600, 0);
+            }
+        }
+
+        function createBird(x, y ){
+            var enemy = game.createGameItem("bird", 25);
+            //var gameItem = draw.rect(50, 50, "red");
+            var gameItem = draw.bitmap("img/bird.png");
+            gameItem.x = -26;
+            gameItem.y = -26;
+            enemy.addChild(gameItem);
+            enemy.x = x;
+            enemy.y = y;
+            game.addGameItem(enemy);
+            enemy.velocityX = -2;
+
+            enemy.onPlayerCollision = function (){
+                game.changeIntegrity(-10);
+            }
+
+            enemy.onProjectileCollision = function (){
+                game.increaseScore(15);
                 enemy.flyTo(600, 0);
             }
         }
@@ -99,17 +126,17 @@ var level01 = function (window) {
         }
 
 
-        function createSpike(x, y){
+        function createCactus(x, y){
             var hitZoneSize = 25; // assigns a value of 25 as the size of the hitzone
-            var damageFromObstacle = 10; // assigns a value as the damage from the obstacle
-            var spikeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle); // creates the obstacle and stores it in the variable sawBladeHitZone
-            spikeHitZone.x = x; // stores a value as the x position for the hit zone
-            spikeHitZone.y = y; // stores a value as the y position for the hit zone
-            game.addGameItem(spikeHitZone); // adds the hit zone as a game item
-            var obstacleImage = draw.bitmap("img/spike.png"); // draws the image and stores it in the variable in the variable obstacleImage
-            spikeHitZone.addChild(obstacleImage); // adds obstacleImage as a child of sawBladeHitZone
+            var damageFromObstacle = 20; // assigns a value as the damage from the obstacle
+            var cactusHitZone = game.createObstacle(hitZoneSize, damageFromObstacle); // creates the obstacle and stores it in the variable sawBladeHitZone
+            cactusHitZone.x = x; // stores a value as the x position for the hit zone
+            cactusHitZone.y = y; // stores a value as the y position for the hit zone
+            game.addGameItem(cactusHitZone); // adds the hit zone as a game item
+            var obstacleImage = draw.bitmap("img/cactus.png"); // draws the image and stores it in the variable in the variable obstacleImage
+            cactusHitZone.addChild(obstacleImage); // adds obstacleImage as a child of sawBladeHitZone
             obstacleImage.x = -25; // assigns a value to the x position of obstacleImage
-            obstacleImage.y = -25; // assigns a value to the y position of obstacleImage
+            obstacleImage.y = -55; // assigns a value to the y position of obstacleImage
     
         }
 
@@ -120,14 +147,17 @@ var level01 = function (window) {
             if(gameItem.type === "ax"){
                 createAx(gameItem.x, gameItem.y);
             }
-            if(gameItem.type === "enemy"){
-                createEnemy(gameItem.x, gameItem.y);
+            if(gameItem.type === "bee"){
+                createBee(gameItem.x, gameItem.y);
+            }
+            if(gameItem.type === "bird"){
+                createBird(gameItem.x, gameItem.y);
             }
             if(gameItem.type === "reward"){
                 createReward(gameItem.x, gameItem.y);
             }
-            if(gameItem.type === "spike"){
-                createSpike(gameItem.x, gameItem.y);
+            if(gameItem.type === "cactus"){
+                createCactus(gameItem.x, gameItem.y);
             }
        }
 
