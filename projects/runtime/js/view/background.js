@@ -27,6 +27,7 @@ var background = function (window) {
         
         // ANIMATION VARIABLES HERE:
         var tree;
+        var tree2;
         var buildings = [];
         // called at the start of game and whenever the page is resized
         // add objects for display in background. draws each image added to the background once
@@ -111,10 +112,10 @@ var background = function (window) {
             tree.y = groundY - 270; // assigns an y value to the tree
             background.addChild(tree); // add the tree as a child to background to make it visible
 
-            tree = draw.bitmap("img/trees.png"); // Uses bitmap to draw the image and stores it in the variable tree
-            tree.x = canvasWidth - 800; // assigns an x value to the tree
-            tree.y = groundY - 270; // assigns an y value to the tree
-            background.addChild(tree); // add the tree as a child to background to make it visible
+            tree2 = draw.bitmap("img/trees.png"); // Uses bitmap to draw the image and stores it in the variable tree
+            tree2.x = canvasWidth - 1000; // assigns an x value to the tree
+            tree2.y = groundY - 270; // assigns an y value to the tree
+            background.addChild(tree2); // add the tree as a child to background to make it visible
             
         } // end of render function - DO NOT DELETE
         
@@ -134,7 +135,8 @@ var background = function (window) {
                 tree.x = canvasWidth;
             }
             
-            if(tree.x < -800){
+            tree2.x = tree2.x -1;
+            if(tree2.x < -1000){
                 tree.x = canvasWidth;
             }
             
