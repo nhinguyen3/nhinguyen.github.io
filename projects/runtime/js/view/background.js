@@ -110,6 +110,11 @@ var background = function (window) {
             tree.x = canvasWidth - 200; // assigns an x value to the tree
             tree.y = groundY - 270; // assigns an y value to the tree
             background.addChild(tree); // add the tree as a child to background to make it visible
+
+            tree = draw.bitmap("img/trees.png"); // Uses bitmap to draw the image and stores it in the variable tree
+            tree.x = canvasWidth - 800; // assigns an x value to the tree
+            tree.y = groundY - 270; // assigns an y value to the tree
+            background.addChild(tree); // add the tree as a child to background to make it visible
             
         } // end of render function - DO NOT DELETE
         
@@ -126,6 +131,10 @@ var background = function (window) {
             tree.x = tree.x -1;
 
             if(tree.x < -200){
+                tree.x = canvasWidth;
+            }
+            
+            if(tree.x < -800){
                 tree.x = canvasWidth;
             }
             
