@@ -20,12 +20,14 @@ var level01 = function (window) {
                 { "type": "ax", "x": 400, "y": groundY - 110},
                 { "type": "ax", "x": 600, "y": groundY - 10},
                 { "type": "ax", "x": 900, "y": groundY - 110},
+                { "type": "ax", "x": 4150, "y": groundY - 110},
+                { "type": "ax", "x": 4300, "y": groundY - 110},
 
                 { "type": "column", "x": 2900, "y": groundY - 2},
-                { "type": "column", "x": 3200, "y": groundY - 2},
+                { "type": "column", "x": 3260, "y": groundY - 2},
 
-                { "type": "column2", "x": 3050, "y": groundY - 115},
-                { "type": "column2", "x": 3350, "y": groundY - 115},
+                { "type": "column2", "x": 3100, "y": groundY - 120},
+                { "type": "column2", "x": 3400, "y": groundY - 120},
 
                 { "type": "bee", "x": 400, "y": groundY - 50 },
                 { "type": "bee", "x": 800, "y": groundY - 50},
@@ -37,11 +39,16 @@ var level01 = function (window) {
                 { "type": "coin", "x": 3050, "y": groundY - 25 },
 
                 { "type": "money", "x": 2460, "y": groundY - 120 },
-                { "type": "money", "x": 3390, "y": groundY - 120 },
+                { "type": "money", "x": 3390, "y": groundY - 60 },
+
+                { "type": "gem", "x": 4300, "y": groundY - 25 },
 
                 { "type": "cactus", "x": 2000, "y": groundY - 10 },   
                 { "type": "cactus", "x": 2200, "y": groundY - 10 },
                 { "type": "cactus", "x": 2400, "y": groundY - 10 },
+
+                { "type": "plant", "x": 3850, "y": groundY},
+                { "type": "plant", "x": 4000, "y": groundY},
             ]
         };
         window.levelData = levelData;
@@ -96,8 +103,6 @@ var level01 = function (window) {
             obstacleImage.y = -45; // assigns a value to the y position of obstacleImage
     
         }
-        
-
        
 
         function createBee(x, y ){
@@ -190,6 +195,27 @@ var level01 = function (window) {
 
        }
 
+       function createGem(x, y ){
+        var reward = game.createGameItem("gem", 25);
+       //var gameItem = draw.rect(50, 50, "blue");
+       var gameItem = draw.bitmap("img/gem.png");
+       gameItem.scaleX = 0.70; // scales the sun's x value
+       gameItem.scaleY = 0.70; // scales the sun's y value
+       gameItem.x = -25;
+       gameItem.y = -15;
+       reward.addChild(gameItem);
+       reward.x = x;
+       reward.y = y;
+       game.addGameItem(reward);
+       reward.velocityX = -2;
+
+       reward.onPlayerCollision = function (){
+           game.changeIntegrity(10);
+           game.increaseScore(15);
+           reward.shrink();
+       }
+     }
+
 
         function createCactus(x, y){
             var hitZoneSize = 25; // assigns a value of 25 as the size of the hitzone
@@ -202,6 +228,22 @@ var level01 = function (window) {
             cactusHitZone.addChild(obstacleImage); // adds obstacleImage as a child of sawBladeHitZone
             obstacleImage.x = -25; // assigns a value to the x position of obstacleImage
             obstacleImage.y = -55; // assigns a value to the y position of obstacleImage
+    
+        }
+
+        function createPlant(x, y){
+            var hitZoneSize = 25; // assigns a value of 25 as the size of the hitzone
+            var damageFromObstacle = 20; // assigns a value as the damage from the obstacle
+            var plantHitZone = game.createObstacle(hitZoneSize, damageFromObstacle); // creates the obstacle and stores it in the variable sawBladeHitZone
+            plantHitZone.x = x; // stores a value as the x position for the hit zone
+            plantHitZone.y = y; // stores a value as the y position for the hit zone
+            game.addGameItem(plantHitZone); // adds the hit zone as a game item
+            var obstacleImage = draw.bitmap("img/plant.png"); // draws the image and stores it in the variable in the variable obstacleImage
+            obstacleImage.scaleX = 0.70; // scales the sun's x value
+            obstacleImage.scaleY = 0.70; // scales the sun's y value
+            plantHitZone.addChild(obstacleImage); // adds obstacleImage as a child of sawBladeHitZone
+            obstacleImage.x = -25; // assigns a value to the x position of obstacleImage
+            obstacleImage.y = -45; // assigns a value to the y position of obstacleImage
     
         }
 
@@ -230,8 +272,14 @@ var level01 = function (window) {
             if(gameItem.type === "money"){
                 createMoney(gameItem.x, gameItem.y);
             }
+            if(gameItem.type === "gem"){
+                createGem(gameItem.x, gameItem.y);
+            }
             if(gameItem.type === "cactus"){
                 createCactus(gameItem.x, gameItem.y);
+            }
+            if(gameItem.type === "plant"){
+                createPlant(gameItem.x, gameItem.y);
             }
        }
 
