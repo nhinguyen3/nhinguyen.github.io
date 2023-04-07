@@ -49,29 +49,29 @@ var background = function (window) {
             //background.addChild(moon); // add the moon as a child of background
             
             var sun = draw.bitmap("img/sun.png"); // draws the sun using .bitmap and stores it in the sun variable
-            sun.x = canvasWidth - 280; // adds an x value to the sun of 300 pixels
-            sun.y = groundY - 430; // adds an y value to the sun of 200 pixels
+            sun.x = canvasWidth - 280; // adds an x value to the sun of 280 pixels
+            sun.y = groundY - 430; // adds an y value to the sun of 430 pixels
             sun.scaleX = 0.60; // scales the sun's x value
             sun.scaleY = 0.60; // scales the sun's y value
             background.addChild(sun); // add the sun as a child of background
 
             var clouds = draw.bitmap("img/clouds.png"); // draws the clouds using .bitmap and stores it in the clouds variable
-            clouds.x = canvasWidth - 950; // adds an x value to the clouds of 300 pixels
-            clouds.y = groundY - 299; // adds an y value to the clouds of 200 pixels
+            clouds.x = canvasWidth - 950; // adds an x value to the clouds of 950 pixels
+            clouds.y = groundY - 299; // adds an y value to the clouds of 299 pixels
             clouds.scaleX = 0.90; // scales the clouds's x value
             clouds.scaleY = 0.85; // scales the sun's y value
             background.addChild(clouds); // add the sun as a child of background
 
             var clouds = draw.bitmap("img/clouds.png"); // draws the clouds using .bitmap and stores it in the clouds variable
-            clouds.x = canvasWidth - 400; // adds an x value to the clouds of 300 pixels
-            clouds.y = groundY - 370; // adds an y value to the clouds of 200 pixels
+            clouds.x = canvasWidth - 400; // adds an x value to the clouds of 400 pixels
+            clouds.y = groundY - 370; // adds an y value to the clouds of 370 pixels
             clouds.scaleX = 0.90; // scales the clouds's x value
             clouds.scaleY = 0.85; // scales the clouds's y value
             background.addChild(clouds); // add the clouds as a child of background
 
             var clouds = draw.bitmap("img/clouds.png"); // draws the clouds using .bitmap and stores it in the clouds variable
-            clouds.x = canvasWidth - 1700; // adds an x value to the clouds of 300 pixels
-            clouds.y = groundY - 400; // adds an y value to the clouds of 200 pixels
+            clouds.x = canvasWidth - 1700; // adds an x value to the clouds of 1700 pixels
+            clouds.y = groundY - 400; // adds an y value to the clouds of 400 pixels
             clouds.scaleX = 0.90; // scales the clouds's x value
             clouds.scaleY = 0.85; // scales the clouds's y value
             background.addChild(clouds); // add the clouds as a child of background
@@ -97,13 +97,14 @@ var background = function (window) {
               //}
 
               for(var i = 0; i < 1; ++i){
-                    var farm = draw.bitmap("img/farm.png");
-                farm.x = canvasWidth - 400;
-                farm.y = groundY - 210;
-                farm.scaleX = 1.30;
-                farm.scaleY = 0.98;
-                background.addChild(farm);
-                buildings.push(farm);
+                //loop that draws the building
+                    var farm = draw.bitmap("img/farm.png"); // draws the farm using .bitmap and stores it in the farm variable
+                farm.x = canvasWidth - 400; // adds an x value to the farm
+                farm.y = groundY - 210; // adds an x value to the farm
+                farm.scaleX = 1.30; // scales the clouds's x value
+                farm.scaleY = 0.98; // scales the clouds's y value
+                background.addChild(farm); // add the farm as a child of background
+                buildings.push(farm);  // calls is so that the farm appears on the screen
               }
             
             // TODO 4: Part 1 - Add a tree
@@ -112,10 +113,10 @@ var background = function (window) {
             tree.y = groundY - 270; // assigns an y value to the tree
             background.addChild(tree); // add the tree as a child to background to make it visible
 
-            tree2 = draw.bitmap("img/trees.png"); // Uses bitmap to draw the image and stores it in the variable tree
-            tree2.x = canvasWidth - 1000; // assigns an x value to the tree
-            tree2.y = groundY - 270; // assigns an y value to the tree
-            background.addChild(tree2); // add the tree as a child to background to make it visible
+            tree2 = draw.bitmap("img/trees.png"); // Uses bitmap to draw the image and stores it in the variable tree2
+            tree2.x = canvasWidth - 1000; // assigns an x value to the tree2
+            tree2.y = groundY - 270; // assigns an y value to the tree2
+            background.addChild(tree2); // add the tree2 as a child to background to make it visible
             
         } // end of render function - DO NOT DELETE
         
@@ -129,15 +130,16 @@ var background = function (window) {
             var groundY = ground.y;
             
             // TODO 4: Part 2 - Move the tree!
-            tree.x = tree.x -1;
+            tree.x = tree.x -1;// assigns a x value to the tree.x and speed of it
 
             if(tree.x < -200){
                 tree.x = canvasWidth;
-            }
+            } // loops through in order to make the tree move and leave/reapper at a certain x value
             
             tree2.x = tree2.x -1;
             if(tree2.x < -1000){
                 tree.x = canvasWidth;
+                // loops through in order to make the tree move and leave/reapper at a certain x value
             }
             
             // TODO 5: Part 2 - Parallax
